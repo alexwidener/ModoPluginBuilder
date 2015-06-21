@@ -25,4 +25,4 @@ Simply go to Tools > Modo Plugins > Search TDSDK Docs / Search PyAPI Docs and
 the input will appear at the bottom of the Sublime Text window for what you
 want to search for.
 
-![assets image](assets/ModoPluginBuilder.png)
+![assets image](assets/ModoPluginBuilder.png) 
