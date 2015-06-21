@@ -52,6 +52,11 @@ TDSDKURL = 'http://sdk.luxology.com/td-sdk/'
 PYAPIURL = 'http://sdk.luxology.com/wiki/Category:Python_API'
 PYAPIsearchURL = 'http://sdk.luxology.com/index.php?search=%s&button=&title=Special%3ASearch'
 SDKURL = 'http://sdk.luxology.com/wiki/SDK'
+HEADER = '#!/usr/bin/python\n# -*- coding: utf-8 -*-\n' \
+         '"""\nDocstring here\n"""\n__author__ = "Your Name"\n' \
+         '__copyright__ = "Your License"\n__version__ = "0.1"\n' \
+         '__email__ = "Your Email"\n__status__ = "Development"\n' \
+         '__date__ = "Last Edited Date"\n\n'
 
 
 if IS_WIN:
@@ -80,11 +85,8 @@ def generateCommand(folder, commandName):
     select = True
 
     cmdclassName = 'CMD' + cleanCommand
-    command = '#!/usr/bin/python\n# -*- coding: utf-8 -*-\n' \
-        '"""\nDocstring here\n"""\n__author__ = "Your Name"\n' \
-        '__copyright__ = "Your License"\n__version__ = "0.1"\n' \
-        '__email__ = "Your Email"\n__status__ = "Development"\n' \
-        '__date__ = "Last Edited Date"\n\n\nimport lx\nimport lxu.command\n'
+    command = HEADER
+    command += '\nimport lx\nimport lxu.command\n'
     if lxifc:
         command += 'import lxifc\n'
     if select:
@@ -222,3 +224,23 @@ class SearchTdsdkDocs(sublime_plugin.TextCommand):
 class ModoSdkDocs(sublime_plugin.TextCommand):
     def run(self, edit):
         webbrowser.open_new_tab(SDKURL)
+
+
+class ModoMakeScript(sublime_plugin.TextCommand):
+    def run(self, edit):
+        import datetime
+        currentTime = str(datetime.datetime.now()).split('.')[0]
+        currentTime = currentTime.replace(':', '_').replace(' ', '_')
+        tempScript = os.path.join(SCRIPTSPATH, 'temp_' + currentTime + '.py')
+        if not os.path.isfile(tempScript):
+            script = HEADER
+            script += '\nimport traceback\n\n\ndef main():\n' \
+                      '    print("Hello, World")\n\n' \
+                      'if __name__ == "__main__":\n' \
+                      '    try:\n        main()\n' \
+                      '    except:\n        print(traceback.format_exc())\n'
+
+            with open(tempScript, 'w') as f:
+                f.write(script)
+
+        self.view.window().open_file(tempScript)

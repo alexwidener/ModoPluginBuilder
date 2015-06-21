@@ -10,6 +10,7 @@
 		[
 			{"caption": "Create Command", "command": "modo_make_comm"},
 			{"caption": "Create Plugin Kit", "command":"modo_make_kit"},
+			{"caption": "Create Script", "command": "modo_make_script"},
 			{"caption": "-", "id":"modo_separator"},
 			{"caption": "TDSDK Docs", "command": "modo_tdsdk_docs"},
 			{"caption": "Search TDSDK Docs", "command": "search_tdsdk_docs"},

@@ -15,7 +15,7 @@ Both of these go to the USER Scripts folder. Part of the reason I chose to
 make this is that on OS X, the new function that is currently inside of Modo
 will install to the root directory and cause permission errors. The other
 reason I made this is because it's a nice idea but it's only available to
-people who purchased 901.
+people who purchased 901. You can also create a quick script as well.
 
 Plus, I prefer Sublime.
 
