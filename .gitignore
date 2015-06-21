@@ -1,4 +1,8 @@
 *.pyc
+*.gitignore
+*.gitattributes
+*.sublime-workspace
+*.sublime-project
 
 # Windows image file caches
 Thumbs.db
