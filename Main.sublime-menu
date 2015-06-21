@@ -1,0 +1,24 @@
+[
+{
+	"id":"tools",
+	"children":
+	[
+	{
+		"id":"modoplugin",
+		"caption":"Modo Plugins",
+		"children":
+		[
+			{"caption": "Create Command", "command": "modo_make_comm"},
+			{"caption": "Create Plugin Kit", "command":"modo_make_kit"},
+			{"caption": "-", "id":"modo_separator"},
+			{"caption": "TDSDK Docs", "command": "modo_tdsdk_docs"},
+			{"caption": "Search TDSDK Docs", "command": "search_tdsdk_docs"},
+			{"caption": "-", "id":"modo_separator"},
+			{"caption": "PyAPI Docs", "command": "modo_python_docs"},
+			{"caption": "Search PyAPI Docs", "command": "search_python_docs"},
+			{"caption": "-", "id":"modo_separator"},
+			{"caption": "SDK Docs", "command": "modo_sdk_docs"}
+		]
+		}]
+}
+]
