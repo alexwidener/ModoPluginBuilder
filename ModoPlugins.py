@@ -35,6 +35,7 @@ __copyright__ = "MIT "
 
 import os
 import webbrowser
+import subprocess
 
 import sublime
 import sublime_plugin
@@ -111,6 +112,8 @@ def generateCommand(folder, commandName):
     with open(commandFile, 'w') as f:
         f.write(command)
 
+    return commandFile
+
 
 class ModoMakeComm(sublime_plugin.TextCommand):
     def run(self, edit, text='command.name'):
@@ -120,7 +123,8 @@ class ModoMakeComm(sublime_plugin.TextCommand):
 
     def commandCheck(self, commandName):
         if checkName(commandName):
-            generateCommand(self.lxservFolder, commandName)
+            commandPath = generateCommand(self.lxservFolder, commandName)
+            self.view.window().open_file(commandPath)
         else:
             sublime.error_message(ILLEGALCHARMSG)
             self.view.window().show_input_panel("Command Name:", commandName,
@@ -148,9 +152,10 @@ class ModoMakeKit(sublime_plugin.TextCommand):
         lxservFolder = os.path.join(kitScriptsFolder, 'lxserv')
         if not os.path.isdir(kitFolder):
             os.makedirs(lxservFolder)
-            generateCommand(lxservFolder, commandName)
+            commandPath = generateCommand(lxservFolder, commandName)
             self.generateInitialize(kitScriptsFolder)
             self.generateIndex(kitFolder, folderName)
+            self.view.window().open_file(commandPath)
         else:
             sublime.error_message(FOLDEREXISTSMSG)
             self.view.window().show_input_panel('Command Name:', commandName,
