@@ -125,6 +125,8 @@ class ModoMakeComm(sublime_plugin.TextCommand):
 
     def commandCheck(self, commandName):
         if checkName(commandName):
+            if not os.path.isdir(self.lxservFolder):
+                os.makedirs(self.lxservFolder)
             commandPath = generateCommand(self.lxservFolder, commandName)
             self.view.window().open_file(commandPath)
         else:
